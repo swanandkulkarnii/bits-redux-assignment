@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    //console.log("Hii", this.props);
+
     this.state = {
       skip: 0,
       pageNo: 1,
@@ -15,22 +15,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    //const propsMadheKayAhe = this.props;
-    console.log("propsMadheKayAhe", this.props);
     this.props.fetchUsersData(this.state.pageNo);
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.props.users !== prevProps.users) {
-  //     this.props.fetchUsersData(this.state.pageNo);
-  //   }
-  // }
 
   onPageChange = (event) => {
     this.setState({
       skip: event.page.skip,
     });
-    if (event.page.skip % 10 == 0) {
+    if (event.page.skip % 10 === 0) {
       this.setState(
         {
           pageNo: this.state.pageNo + 1,
@@ -71,7 +63,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   console.log("state in map", state);
   return {
-    users: state.usersReducer.users,
+    users: state.usersReducer.users.sort((a, b) => a.id - b.id),
     total: state.usersReducer.total,
   };
 };
