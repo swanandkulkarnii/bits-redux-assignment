@@ -1,11 +1,5 @@
 import axios from "axios";
 
-export const removeUser = () => {
-  return {
-    type: "REMOVE_USER",
-  };
-};
-
 export const fetchUsersData =
   (pageNo = 1) =>
   async (dispatch, getState) => {

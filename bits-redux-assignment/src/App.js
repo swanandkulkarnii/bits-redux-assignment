@@ -45,7 +45,11 @@ class App extends React.Component {
             height: "440px",
           }}
           rowHeight={40}
-          data={this.props.users.slice(this.state.skip, this.state.skip + 10)}
+          data={
+            this.props.users
+              ? this.props.users.slice(this.state.skip, this.state.skip + 10)
+              : null
+          }
           pageSize={10}
           total={this.props.total}
           skip={this.skip}
@@ -63,7 +67,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   console.log("state in map", state);
   return {
-    users: state.usersReducer.users.sort((a, b) => a.id - b.id),
+    users: state.usersReducer.users,
     total: state.usersReducer.total,
   };
 };
