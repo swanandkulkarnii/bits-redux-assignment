@@ -27,14 +27,18 @@ class App extends React.Component {
   // }
 
   onPageChange = (event) => {
-    if (this.state.skip % 12 == 0) {
-      this.setState({
-        pageNo: this.state.pageNo + 1,
-      });
-    }
     this.setState({
       skip: event.page.skip,
     });
+    if (event.page.skip % 10 == 0) {
+      this.setState(
+        {
+          pageNo: this.state.pageNo + 1,
+        },
+        () => this.props.fetchUsersData(this.state.pageNo)
+      );
+    }
+
     console.log("skip", this.state.skip);
     console.log("PageNo", this.state.pageNo);
   };
@@ -50,8 +54,8 @@ class App extends React.Component {
           }}
           rowHeight={40}
           data={this.props.users.slice(this.state.skip, this.state.skip + 10)}
-          pageSize={20}
-          total={this.props.total[0]}
+          pageSize={10}
+          total={this.props.total}
           skip={this.skip}
           scrollable={"virtual"}
           onPageChange={this.onPageChange}>
@@ -67,8 +71,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   console.log("state in map", state);
   return {
-    users: state.usersReducer.get("users"),
-    total: state.usersReducer.get("total"),
+    users: state.usersReducer.users,
+    total: state.usersReducer.total,
   };
 };
 
