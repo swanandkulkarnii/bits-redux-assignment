@@ -5,9 +5,6 @@ const initialState = Map({ users: [], total: [] });
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_USERS_DATA":
-      console.log("action.payload", action.payload);
-      //state.set("users", action.payload.data.data);
-      //state.set("total", action.payload.data.meta.pagination.total);
       return {
         ...state,
         users: action.payload.data.data,
@@ -15,7 +12,6 @@ const usersReducer = (state = initialState, action) => {
       };
 
     default:
-      console.log("default", state);
       return state;
   }
 };
