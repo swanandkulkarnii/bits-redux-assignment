@@ -12,3 +12,9 @@ export const fetchUsersData =
       payload: res,
     });
   };
+
+export const loadingData = (state) => {
+  return {
+    type: "USERS_DATA_IS_LOADING",
+  };
+};
