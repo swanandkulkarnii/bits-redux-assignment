@@ -4,6 +4,7 @@ import "@progress/kendo-theme-material/dist/all.css";
 import { fetchUsersData } from "../action";
 import { connect } from "react-redux";
 import totalUsersSelector from "../selector/totalUsersSelector";
+import { NavLink } from "react-router-dom";
 
 class UsersList extends React.Component {
   constructor(props) {
@@ -36,7 +37,10 @@ class UsersList extends React.Component {
   render() {
     return (
       <div>
-        <h1>Users List</h1>
+        <NavLink to="/">
+          <button className="btn btn-primary">Home</button>
+        </NavLink>
+        <h1 className="d-flex justify-content-center">Users List</h1>
         <Grid
           style={{
             height: "440px",
