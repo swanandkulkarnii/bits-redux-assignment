@@ -13,7 +13,7 @@ export const fetchUsersData =
     });
   };
 
-export const loadingData = (state) => {
+export const loadingData = () => {
   return {
     type: "USERS_DATA_IS_LOADING",
   };
